@@ -1,0 +1,1 @@
+This is a chome extension that can copy and save a link directly from the browser tab, without having to manually copy and paste the link in a note or something.
