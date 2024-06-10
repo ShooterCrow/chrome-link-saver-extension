@@ -1,7 +1,8 @@
 const buttons = document.querySelectorAll("button");
 const input = document.querySelector("input");
 const savedList = document.querySelector("ul");
-const array = []
+const deleteAll = document.getElementById("deleteAll")
+let array = []
 let div
 
 
@@ -53,11 +54,19 @@ function remove () {
     console.log(array, this.id, this.id-1)
 }
 
+function removeAll () {
+    savedList.innerHTML = ""
+    array = []
+    console.log(array)
+}
+
 buttons.forEach(x => {
     if (x.id === "inputSave") {
         x.addEventListener("click", saveInput)
     } else if (x.id === "linkSave") {
         x.addEventListener("click", saveLink)
-    } 
+    } else if (x.id === "deleteAll") {
+        x.addEventListener("click", removeAll)
+    }  
 })
 

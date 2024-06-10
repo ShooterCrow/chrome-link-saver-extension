@@ -40,6 +40,10 @@ button {
     cursor: pointer;
 }
 
+#deleteAll {
+    background-color: red;
+}
+
 button:hover {
     opacity: 0.9;
 }
