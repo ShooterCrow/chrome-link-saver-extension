@@ -3,8 +3,16 @@ const input = document.querySelector("input");
 const savedList = document.querySelector("ul");
 const deleteAll = document.getElementById("deleteAll")
 let array = []
+let arrayFromLocalS = JSON.parse(localStorage.getItem("items"))
 let div
 
+if (arrayFromLocalS) {
+    array = arrayFromLocalS
+    array.forEach((item, index) => {
+        createNew(item, index)
+        savedList.appendChild(div);
+    })
+}
 
 function createNew (m, index) {
     div = document.createElement("div");
@@ -26,7 +34,6 @@ function createNew (m, index) {
 
     div.appendChild(li);
     
-    console.log(div)
 }
 
 
@@ -43,6 +50,7 @@ const saveInput = () => {
         
         savedList.appendChild(div);
     }
+    localStorage.setItem("items", JSON.stringify(array))
 }
 
 const saveLink = () => {
@@ -50,14 +58,17 @@ const saveLink = () => {
 }
 
 function remove () {
-    console.log(this.parentElement.parentElement.remove())
-    console.log(array, this.id, this.id-1)
+    this.parentElement.parentElement.remove()
+    let text = this.parentElement.children[0].innerText
+    array = array.filter(x => x!== text)
+    localStorage.setItem("items", JSON.stringify(array))
+    // console.log(array, this.id, this.id-1)
 }
 
 function removeAll () {
     savedList.innerHTML = ""
     array = []
-    console.log(array)
+    localStorage.removeItem("items")
 }
 
 buttons.forEach(x => {
