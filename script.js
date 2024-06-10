@@ -38,6 +38,9 @@ function createNew (m, index) {
     li.appendChild(div2);
 
     div.appendChild(li);
+
+    
+    savedList.appendChild(div);
     
 }
 
@@ -53,14 +56,19 @@ const saveInput = () => {
 
         createNew(userInput, array.length-1)
         
-        savedList.appendChild(div);
     }
     localStorage.setItem("items", JSON.stringify(array))
-    console.log(div)
 }
 
 const saveLink = () => {
-    console.log("Save Link");
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        let data = tabs[0].url
+        array.push(data)
+        createNew(data, array.length)
+        localStorage.setItem("items", JSON.stringify(array))
+      });
+
+
 }
 
 function remove () {
@@ -68,7 +76,7 @@ function remove () {
     let text = this.parentElement.children[0].innerText
     array = array.filter(x => x!== text)
     localStorage.setItem("items", JSON.stringify(array))
-    // console.log(array, this.id, this.id-1)
+    console.log(array, this.id, this.id-1)
 }
 
 function removeAll () {
