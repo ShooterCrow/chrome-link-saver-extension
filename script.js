@@ -20,14 +20,19 @@ function createNew (m, index) {
     let div2 = document.createElement("div");
     let p = document.createElement("p");
     let btn = document.createElement("button");
+    let a = document.createElement("a");
 
-    p.innerText = m
+    p.innerText = m;
+    a.setAttribute("href", `${input.value}` + m);
+    a.setAttribute("target", "_blank");
     btn.innerText = "Remove"
     btn.setAttribute("id", index)
     btn.addEventListener("click", remove)
     btn.classList.add("remove")
 
-    div2.appendChild(p);
+    a.appendChild(p);
+
+    div2.appendChild(a);
     div2.appendChild(btn);
 
     li.appendChild(div2);
@@ -51,6 +56,7 @@ const saveInput = () => {
         savedList.appendChild(div);
     }
     localStorage.setItem("items", JSON.stringify(array))
+    console.log(div)
 }
 
 const saveLink = () => {

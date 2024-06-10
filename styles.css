@@ -4,6 +4,19 @@
 
 body {
     margin: 10px;
+    font-family: poppins;
+}
+
+a {
+    color: green;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+
 }
 
 .container {
